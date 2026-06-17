@@ -1,0 +1,1131 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head><link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>英语口语练习 · Speaker</title>
+  
+  <style>﻿:root{--bg:#f0f7f4;--bg-card:#fff;--bg-card-alt:#f8fdf9;--text:#1a2e2a;--text-secondary:#5a7a72;--text-muted:#8aa89e;--primary:#2d9b7a;--primary-light:#e8f5f0;--primary-dark:#1e7a5e;--accent:#f5a623;--accent-light:#fff5e6;--danger:#e85d5d;--danger-light:#fff0f0;--success:#4caf7d;--success-light:#e8f8f0;--border:#dce8e2;--shadow:0 2px 16px rgba(45,155,122,0.08);--shadow-lg:0 8px 40px rgba(45,155,122,0.12);--radius:16px;--radius-sm:10px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--font-display:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--nav-height:72px;--transition:0.3s cubic-bezier(.4,0,.2,1);--wave-color:#2d9b7a}
+.dark-mode{--bg:#0f1a17;--bg-card:#1a2e28;--bg-card-alt:#1f352e;--text:#dce8e2;--text-secondary:#8aa89e;--text-muted:#5a7a72;--primary:#3dbb96;--primary-light:#1a3a30;--primary-dark:#2d9b7a;--border:#2a4a40;--shadow:0 2px 16px rgba(0,0,0,0.2);--shadow-lg:0 8px 40px rgba(0,0,0,0.3)}
+.eye-care-mode{--bg:#c7edcc;--bg-card:#daf5de;--bg-card-alt:#e2f8e6;--text:#1a2e1a;--text-secondary:#4a7a5a;--border:#b8dcc0;--shadow:0 2px 16px rgba(0,80,0,0.06)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);transition:background var(--transition),color var(--transition);min-height:100vh;padding-bottom:calc(var(--nav-height)+24px);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-height);background:var(--bg-card);border-top:1px solid var(--border);display:flex;align-items:stretch;z-index:1000;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;transition:var(--transition);position:relative;color:var(--text-muted);font-size:11px;font-weight:500}
+.nav-item svg{width:24px;height:24px;transition:var(--transition)}
+.nav-item.active{color:var(--primary)}
+.nav-item.active svg{stroke:var(--primary);fill:var(--primary)}
+.nav-item .badge{position:absolute;top:6px;right:50%;transform:translateX(calc(50%+14px));background:var(--danger);color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.page{display:none;padding:16px;max-width:480px;margin:0 auto}
+.page.active{display:block;animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes bounceIn{0%{transform:scale(0);opacity:0}50%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-200px) rotate(720deg);opacity:0}}
+.header{display:flex;justify-content:space-between;align-items:center;padding:8px 0 16px}
+.header h1{font-family:var(--font-display);font-size:24px;font-weight:800}
+.header .subtitle{font-size:13px;color:var(--text-secondary);margin-top:2px}
+.icon-btn{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--bg-card);border:1px solid var(--border);cursor:pointer;color:var(--text-secondary);transition:var(--transition);font-size:18px}
+.card{background:var(--bg-card);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);margin-bottom:16px;transition:var(--transition);border:1px solid transparent}
+.card-title{font-size:15px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.progress-ring-container{display:flex;align-items:center;gap:20px}
+.progress-ring{position:relative;width:80px;height:80px;flex-shrink:0}
+.progress-ring svg{transform:rotate(-90deg)}
+.progress-ring .bg{fill:none;stroke:var(--border);stroke-width:6}
+.progress-ring .fg{fill:none;stroke:var(--primary);stroke-width:6;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.progress-ring .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.progress-ring .center span:first-child{font-size:20px;font-weight:700;color:var(--text)}
+.progress-ring .center span:last-child{font-size:10px;color:var(--text-muted)}
+.progress-info{flex:1}
+.progress-info .label{font-size:14px;font-weight:600;color:var(--text)}
+.progress-info .detail{font-size:13px;color:var(--text-secondary);margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border-radius:var(--radius-sm);font-family:var(--font);font-size:15px;font-weight:600;border:none;cursor:pointer;transition:var(--transition)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(45,155,122,0.3)}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.btn-outline:hover{background:var(--primary-light)}
+.btn-sm{padding:8px 16px;font-size:13px}
+.btn-block{width:100%}
+.btn-group{display:flex;gap:8px}
+.btn-group .btn{flex:1}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.quick-item{background:var(--bg-card);border-radius:var(--radius);padding:18px 16px;cursor:pointer;transition:var(--transition);border:1px solid var(--border);text-align:center}
+.quick-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.quick-item .icon{font-size:28px;margin-bottom:8px}
+.quick-item .name{font-size:14px;font-weight:600;color:var(--text)}
+.quick-item .desc{font-size:12px;color:var(--text-secondary);margin-top:2px}
+.mini-chart{display:flex;align-items:flex-end;gap:4px;height:48px;padding:4px 0}
+.mini-chart .bar{flex:1;border-radius:3px 3px 0 0;background:var(--primary-light);transition:height .6s ease;min-height:4px}
+.mini-chart .bar.filled{background:var(--primary)}
+.practice-header{text-align:center;padding:20px 0 8px}
+.practice-header .mode-tag{display:inline-block;padding:4px 14px;border-radius:20px;background:var(--primary-light);color:var(--primary);font-size:13px;font-weight:600}
+.practice-header .counter{font-size:14px;color:var(--text-secondary);margin-top:8px}
+.word-card{background:var(--bg-card);border-radius:var(--radius);padding:32px 24px;text-align:center;box-shadow:var(--shadow-lg);margin:12px 0 16px}
+.word-card .word{font-size:36px;font-weight:800;font-family:var(--font-display);color:var(--text)}
+.word-card .phonetic{font-size:16px;color:var(--text-secondary);margin-top:6px}
+.word-card .meaning{font-size:18px;font-weight:500;margin-top:12px;color:var(--text)}
+.word-card .example{font-size:15px;color:var(--text-secondary);margin-top:12px;line-height:1.6;font-style:italic;padding:12px;background:var(--bg-card-alt);border-radius:var(--radius-sm)}
+.word-card .example-trans{font-size:13px;color:var(--text-muted);margin-top:4px}
+.audio-controls{display:flex;justify-content:center;gap:16px;margin:16px 0;align-items:center}
+.audio-btn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;transition:var(--transition)}
+.audio-btn.play{background:var(--primary-light);color:var(--primary)}
+.audio-btn.play:hover{background:var(--primary);color:#fff;transform:scale(1.05)}
+.audio-btn.record{width:72px;height:72px;background:var(--primary);color:#fff;box-shadow:0 4px 24px rgba(45,155,122,0.3)}
+.audio-btn.record:hover{transform:scale(1.08)}
+.audio-btn.record.recording{background:var(--danger);animation:pulse 1.2s infinite;box-shadow:0 4px 24px rgba(232,93,93,0.4)}
+.audio-btn.record:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.waveform{display:flex;align-items:center;justify-content:center;gap:3px;height:60px;margin:12px 0}
+.waveform .bar{width:4px;border-radius:3px;background:var(--wave-color);animation:wave .6s ease infinite alternate;opacity:.5}
+.waveform.active .bar{opacity:1}
+@keyframes wave{0%,100%{transform:scaleY(0.3)}50%{transform:scaleY(1)}}
+.score-result{text-align:center;padding:20px;animation:bounceIn .6s ease}
+.score-result .score-circle{width:100px;height:100px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-direction:column;font-family:var(--font-display);margin-bottom:12px}
+.score-result .score-number{font-size:36px;font-weight:800}
+.score-result .score-label{font-size:12px;opacity:.8}
+.score-result .score-detail{display:flex;gap:16px;justify-content:center;margin-top:12px}
+.score-result .score-detail-item{text-align:center}
+.score-result .score-detail-item .value{font-size:18px;font-weight:700}
+.score-result .score-detail-item .label{font-size:11px;color:var(--text-secondary)}
+.word-highlight{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0}
+.word-highlight .word-tag{padding:4px 12px;border-radius:6px;font-size:14px;font-weight:500}
+.word-highlight .word-tag.good{background:var(--success-light);color:var(--success)}
+.word-highlight .word-tag.needs-work{background:var(--danger-light);color:var(--danger)}
+.word-highlight .word-tag.ok{background:var(--accent-light);color:var(--accent)}
+.feedback-box{background:var(--primary-light);border-radius:var(--radius-sm);padding:16px;margin-top:12px;text-align:left}
+.feedback-box .tip{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.feedback-box .tip strong{color:var(--primary)}
+.heatmap{display:flex;flex-direction:column;gap:3px}
+.heatmap .week{display:flex;gap:3px}
+.heatmap .day{width:14px;height:14px;border-radius:3px;background:var(--border);cursor:pointer;transition:var(--transition)}
+.heatmap .day.level-1{background:#c8e6d9}
+.heatmap .day.level-2{background:#8dc9b4}
+.heatmap .day.level-3{background:#4db893}
+.heatmap .day.level-4{background:var(--primary)}
+.heatmap .day.today{outline:2px solid var(--primary-dark);outline-offset:1px}
+.heatmap-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:4px}
+.history-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.history-item:last-child{border-bottom:none}
+.history-item .h-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;background:var(--primary-light);flex-shrink:0}
+.history-item .h-info{flex:1;min-width:0}
+.history-item .h-info .h-title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.history-item .h-info .h-meta{font-size:12px;color:var(--text-secondary);margin-top:2px}
+.history-item .h-score{font-size:16px;font-weight:700;color:var(--primary);flex-shrink:0}
+.history-item .h-score.low{color:var(--danger)}
+.wrong-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.wrong-item:last-child{border-bottom:none}
+.wrong-item .w-word{font-size:16px;font-weight:600;flex:1}
+.wrong-item .w-count{font-size:12px;color:var(--text-muted);background:var(--bg-card-alt);padding:2px 10px;border-radius:10px;flex-shrink:0}
+.wrong-item .w-btn{padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;cursor:pointer;font-size:12px;color:var(--text-secondary);transition:var(--transition);flex-shrink:0}
+.wrong-item .w-btn:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.wrong-item .w-btn.added{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.profile-header{text-align:center;padding:24px 0}
+.profile-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:32px;color:#fff;font-weight:700}
+.profile-level{font-size:14px;font-weight:600;color:var(--primary)}
+.profile-name{font-size:20px;font-weight:700;margin-top:4px;color:var(--text)}
+.badge-grid{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.badge-item{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--bg-card-alt);border:1px solid var(--border);transition:var(--transition)}
+.badge-item.earned{background:var(--accent-light);border-color:var(--accent);box-shadow:0 0 12px rgba(245,166,35,0.2)}
+.badge-item.locked{opacity:.4;filter:grayscale(1)}
+.settings-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)}
+.settings-item:last-child{border-bottom:none}
+.settings-item .s-label{font-size:14px;font-weight:500;color:var(--text)}
+.settings-item .s-desc{font-size:12px;color:var(--text-secondary)}
+.toggle{position:relative;width:48px;height:28px;cursor:pointer;flex-shrink:0}
+.toggle input{display:none}
+.toggle .slider{position:absolute;inset:0;border-radius:14px;background:var(--border);transition:var(--transition)}
+.toggle .slider::before{content:'';position:absolute;width:22px;height:22px;border-radius:50%;background:#fff;top:3px;left:3px;transition:var(--transition);box-shadow:0 1px 4px rgba(0,0,0,0.15)}
+.toggle input:checked+.slider{background:var(--primary)}
+.toggle input:checked+.slider::before{transform:translateX(20px)}
+.select-custom{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);font-size:13px;color:var(--text);font-family:var(--font);cursor:pointer}
+.select-custom:focus{outline:none;border-color:var(--primary)}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--bg-card);color:var(--text);padding:12px 24px;border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);border:1px solid var(--border);z-index:2000;font-size:14px;font-weight:500;animation:slideUp .3s ease;display:none;max-width:90%}
+.toast.show{display:block}
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:1500;display:none;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px)}
+.modal-overlay.show{display:flex}
+.modal{background:var(--bg-card);border-radius:var(--radius);padding:28px 24px;max-width:400px;width:100%;box-shadow:var(--shadow-lg);animation:slideUp .3s ease}
+.modal h2{font-size:18px;font-weight:700;margin-bottom:12px;color:var(--text)}
+.modal p{font-size:14px;color:var(--text-secondary);line-height:1.6;margin-bottom:16px}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-muted)}
+.empty-state .icon{font-size:48px;margin-bottom:12px}
+.empty-state p{font-size:14px}
+.confetti-container{position:fixed;inset:0;pointer-events:none;z-index:3000;overflow:hidden}
+.confetti-piece{position:absolute;bottom:-10px;width:8px;height:8px;border-radius:2px;animation:confetti 2.5s ease forwards}
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-200px) rotate(720deg);opacity:0}}
+.tab-bar{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-item{padding:8px 18px;border-radius:20px;white-space:nowrap;font-size:13px;font-weight:500;cursor:pointer;background:var(--bg-card-alt);color:var(--text-secondary);border:1px solid var(--border);transition:var(--transition)}
+.tab-item.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.filter-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.chip{padding:6px 14px;border-radius:16px;font-size:12px;font-weight:500;background:var(--bg-card-alt);color:var(--text-secondary);border:1px solid var(--border);cursor:pointer;transition:var(--transition)}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.celebration{text-align:center;padding:12px}
+.celebration .emoji{font-size:40px}
+.celebration .msg{font-size:16px;font-weight:700;color:var(--primary);margin-top:8px}
+.celebration .sub-msg{font-size:13px;color:var(--text-secondary);margin-top:4px}
+.mode-selector{display:flex;gap:8px;margin-bottom:16px}
+.mode-btn{flex:1;padding:14px;border-radius:var(--radius-sm);text-align:center;cursor:pointer;border:2px solid var(--border);background:var(--bg-card);transition:var(--transition)}
+.mode-btn.active{border-color:var(--primary);background:var(--primary-light)}
+.mode-btn .mode-name{font-size:16px;font-weight:700;color:var(--text)}
+.mode-btn .mode-desc{font-size:12px;color:var(--text-secondary);margin-top:4px}
+.mode-btn.active .mode-name{color:var(--primary)}
+@media(min-width:480px){.page{padding:24px}}
+
+</style>
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"></head>
+<body>
+<nav class="nav" id="nav">
+  <div class="nav-item active" data-page="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d=M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z/><polyline points=9 22 9 12 15 12 15 22/></svg><span>首页</span></div>
+  <div class="nav-item" data-page="practice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d=M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z/><path d=M19 10v2a7 7 0 0 1-14 0v-2/><line x1=12 y1=19 x2=12 y2=23/><line x1=8 y1=23 x2=16 y2=23/></svg><span>练习</span></div>
+  <div class="nav-item" data-page="records"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1=18 y1=20 x2=18 y2=10/><line x1=12 y1=20 x2=12 y2=4/><line x1=6 y1=20 x2=6 y2=14/></svg><span>记录</span><div class="badge" id="recordBadge" style="display:none">3</div></div>
+  <div class="nav-item" data-page="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d=M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2/><circle cx=12 cy=7 r=4/></svg><span>我的</span></div>
+</nav>
+<div class="toast" id="toast"></div>
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent">
+    <h2 id="modalTitle">提示</h2>
+    <p id="modalBody">内容</p>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-block" id="modalCancel">取消</button>
+      <button class="btn btn-primary btn-block" id="modalConfirm">确定</button>
+    </div>
+  </div>
+</div>
+<div class="confetti-container" id="confettiContainer"></div>
+<div class="page active" id="pageHome"><div class="header"><div><h1 id="greetingText">&#x1f44b; 早上好</h1><div class="subtitle" id="greetingSub">今天也要加油练习口语哦！</div></div><div class="header-actions"><button class="icon-btn" onclick="toggleTheme()">&#x1f313;</button></div></div><div class="card"><div class="card-title">&#x1f4ca; 今日目标</div><div class="progress-ring-container"><div class="progress-ring"><svg viewBox="0 0 80 80"><circle class="bg" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34" stroke-dasharray="213.6" stroke-dashoffset="213.6" id="progressRing"/></svg><div class="center"><span id="progressPercent">0%</span><span>完成</span></div></div><div class="progress-info"><div class="label" id="todayLabel">单词 0/10 · 句子 0/5</div><div class="detail" id="todayDetail">今天还没开始练习，快去看看吧！</div></div></div></div><div class="card"><div class="card-title">&#x1f680; 快速开始</div><div class="quick-grid"><div class="quick-item" onclick="startPractice(10,'word','cet4','random')"><div class="icon">&#x1f4d6;</div><div class="name">四级单词</div><div class="desc">随机10个核心词</div></div><div class="quick-item" onclick="startPractice(10,'word','cet6','random')"><div class="icon">&#x1f4da;</div><div class="name">六级单词</div><div class="desc">随机10个核心词</div></div><div class="quick-item" onclick="startPractice(5,'sentence','cet4','random')"><div class="icon">&#x1f4ac;</div><div class="name">四级例句</div><div class="desc">随机5个典型句</div></div><div class="quick-item" onclick="startPractice(5,'sentence','cet6','random')"><div class="icon">&#x1f3af;</div><div class="name">六级例句</div><div class="desc">随机5个典型句</div></div></div></div><div class="card"><div class="card-title">&#x1f4c8; 最近得分趋势</div><div class="mini-chart" id="homeChart"></div></div><div class="card" style="cursor:pointer" onclick="switchPage('records')"><div class="card-title">❌ 错题本 <span style="font-size:13px;color:var(--text-secondary);font-weight:400" id="wrongCountHome">(0 个待复习)</span></div><p style="font-size:14px;color:var(--text-secondary)">点击查看常错单词和句子，一键强化训练</p></div></div>
+<div class="page" id="pagePractice"><div class="practice-header"><div class="mode-tag" id="practiceModeTag">四级 · 单词</div><div class="counter" id="practiceCounter">第 1 / 10 个</div></div><div id="practiceSetup"><div class="card"><div class="card-title">&#x1f4cb; 练习设置</div><div class="mode-selector"><div class="mode-btn active" data-mode="cet4" onclick="selectExamMode(this,'cet4')"><div class="mode-name">CET-4</div><div class="mode-desc">四级核心词</div></div><div class="mode-btn" data-mode="cet6" onclick="selectExamMode(this,'cet6')"><div class="mode-name">CET-6</div><div class="mode-desc">六级核心词</div></div></div><div class="tab-bar" id="topicChips"></div><div class="btn-group" style="margin-top:12px"><button class="btn btn-outline" onclick="selectPracticeType('word')">&#x1f4dd; 单词练习</button><button class="btn btn-outline" onclick="selectPracticeType('sentence')">&#x1f4ac; 句子练习</button></div><div style="margin-top:12px"><select class="select-custom" id="accentSelect" style="width:100%"><option value="us">&#x1f1fa;&#x1f1f8; 美式发音</option><option value="uk">&#x1f1ec;&#x1f1e7; 英式发音</option></select></div><button class="btn btn-primary btn-block" style="margin-top:16px" onclick="beginPractice()">开始练习</button></div></div><div id="practiceSession" style="display:none"><div class="word-card" id="wordCard"><div class="word" id="practiceWord">example</div><div class="phonetic" id="practicePhonetic">/ɪɡˈzæmpəl/</div><div class="meaning" id="practiceMeaning">n. 例子</div><div class="example" id="practiceExample">"This is an example sentence."</div><div class="example-trans" id="practiceExampleTrans">这是一个例句。</div></div><div class="audio-controls"><button class="audio-btn play" id="playBtn" onclick="playStandard()">&#x1f50a;</button><button class="audio-btn record" id="recordBtn" onclick="toggleRecording()">&#x1f3a4;</button><button class="audio-btn play" id="playResultBtn" style="display:none" onclick="playResult()">&#x1f3a7;</button></div><div class="waveform" id="waveform"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><div id="scoreResult" style="display:none"></div><div class="btn-group" style="margin-top:16px" id="practiceActions"><button class="btn btn-primary" id="skipBtn" onclick="nextPracticeItem()">下一个 →</button></div></div><div id="practiceComplete" style="display:none"><div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:64px;margin-bottom:16px">undefined</div><h2 style="font-size:22px;font-weight:800;margin-bottom:8px">练习完成！</h2><p style="font-size:16px;color:var(--text-secondary)" id="completeSummary">本次练习共完成 10 个单词</p><div style="font-size:48px;font-weight:800;color:var(--primary);margin:16px 0" id="completeScore">85</div><p style="font-size:13px;color:var(--text-muted)">平均分</p><div class="word-highlight" id="completeWordTags"></div><div class="btn-group" style="margin-top:24px"><button class="btn btn-primary" onclick="startPractice()">再练一次</button><button class="btn btn-outline" onclick="switchPage('home')">返回首页</button></div></div></div></div>
+<div class="page" id="pageRecords"><div class="header"><div><h1>&#x1f4ca; 学习记录</h1><div class="subtitle">坚持就是胜利 undefined</div></div></div><div class="card"><div class="card-title">&#x1f525; 本月打卡</div><div id="heatmapContainer"></div></div><div class="card"><div class="card-title">&#x1f4c8; 成绩趋势</div><svg class="chart-line" id="scoreChart" viewBox="0 0 300 120" preserveAspectRatio="none"><defs><linearGradient id="scoreGradient" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--primary)"/><stop offset="100%" stop-color="var(--primary)" stop-opacity="0"/></linearGradient></defs></svg><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:4px"><span id="chartStartLabel">近7天</span><span id="chartEndLabel">今天</span></div></div><div class="card"><div class="card-title">&#x1f4cb; 练习历史</div><div id="historyList"></div></div><div class="card"><div class="card-title">❌ 常错单词 <span style="font-size:12px;font-weight:400;color:var(--text-muted)" id="wrongCountLabel">(加入错题本强化)</span></div><div id="wrongWordsList"></div></div></div>
+<div class="page" id="pageProfile"><div class="profile-header"><div class="profile-avatar">&#x1f396;&#xFE0F;</div><div class="profile-level" id="profileLevel">青铜学员</div><div class="profile-name">英语达人</div><p style="font-size:13px;color:var(--text-secondary);margin-top:4px">累计练习 <span id="totalPracticeCount">0</span> 次</p></div><div class="card"><div class="card-title">&#x1f396;&#xFE0F; 成就徽章</div><div class="badge-grid" id="badgeGrid"></div></div><div class="card"><div class="card-title">⚙&#xFE0F; 学习设置</div><div class="settings-item"><div><div class="s-label">发音口音</div><div class="s-desc">选择练习时的标准发音</div></div><select class="select-custom" id="profileAccent" onchange="updateAccent(this.value)"><option value="us">&#x1f1fa;&#x1f1f8; 美式</option><option value="uk">&#x1f1ec;&#x1f1e7; 英式</option></select></div><div class="settings-item"><div><div class="s-label">每日目标 · 单词</div><div class="s-desc">设定每天要练习的单词数</div></div><select class="select-custom" id="dailyWordGoal" onchange="updateDailyGoal()"><option value="5">5 个</option><option value="10" selected>10 个</option><option value="15">15 个</option><option value="20">20 个</option><option value="30">30 个</option></select></div><div class="settings-item"><div><div class="s-label">每日目标 · 句子</div><div class="s-desc">设定每天要练习的句子数</div></div><select class="select-custom" id="dailySentenceGoal" onchange="updateDailyGoal()"><option value="3">3 句</option><option value="5" selected>5 句</option><option value="10">10 句</option></select></div><div class="settings-item"><div><div class="s-label">护眼模式</div><div class="s-desc">柔和绿色背景，保护视力</div></div><label class="toggle"><input type="checkbox" id="eyeCareToggle" onchange="toggleEyeCare()"><span class="slider"></span></label></div><div class="settings-item"><div><div class="s-label">暗色模式</div><div class="s-desc">深色背景，适合夜间学习</div></div><label class="toggle"><input type="checkbox" id="darkToggle" onchange="toggleDarkMode()"><span class="slider"></span></label></div><div class="settings-item"><div><div class="s-label">当前词库</div><div class="s-desc">切换四级/六级核心词汇</div></div><select class="select-custom" id="vocabSelect" onchange="updateVocab(this.value)"><option value="cet4">&#x1f4d6; CET-4 四级</option><option value="cet6">&#x1f4da; CET-6 六级</option></select></div></div><div class="card"><div class="card-title">&#x1f4be; 数据管理</div><div style="display:flex;flex-direction:column;gap:8px"><button class="btn btn-outline btn-block btn-sm" onclick="exportData()">&#x1f4e4; 导出备份数据</button><button class="btn btn-outline btn-block btn-sm" onclick="document.getElementById('importInput').click()">&#x1f4e5; 导入恢复数据</button><input type="file" id="importInput" accept=".json" style="display:none" onchange="importData(event)"><button class="btn btn-danger btn-block btn-sm" onclick="clearAllData()">&#x1f5d1;&#xFE0F; 清除所有数据</button></div></div></div>
+<script>﻿const VOCAB_DB = {
+  cet4: {
+    Education: [
+      {w:"education",ph:"/?ed?u?ke??n/",m:"n. 教育",ex:"Education is the key to success.",ext:"教育是成功的关键。",ex2:"She has a degree in education.",ext2:"她拥有教育学学位。"},
+      {w:"knowledge",ph:"/?n?l?d?/",m:"n. 知识",ex:"Knowledge is power.",ext:"知识就是力量。",ex2:"He has a wide knowledge of history.",ext2:"他拥有广博的历史知识。"},
+      {w:"practice",ph:"/?pr?kt?s/",m:"n./v. 练习",ex:"Practice makes perfect.",ext:"熟能生巧。",ex2:"You need more practice speaking English.",ext2:"你需要更多练习说英语。"},
+      {w:"semester",ph:"/s??mest?r/",m:"n. 学期",ex:"This semester I have five courses.",ext:"这学期我有五门课。",ex2:"The fall semester starts in September.",ext2:"秋季学期九月份开始。"},
+      {w:"scholarship",ph:"/?sk?l?r??p/",m:"n. 奖学金",ex:"She won a scholarship to study abroad.",ext:"她获得了出国留学的奖学金。",ex2:"He applied for a full scholarship.",ext2:"他申请了全额奖学金。"},
+      {w:"graduate",ph:"/?ɡr?d?u?t/",m:"v./n. 毕业",ex:"He graduated from Peking University.",ext:"他毕业于北京大学。",ex2:"She is a graduate of Tsinghua University.",ext2:"她是清华大学的毕业生。"},
+      {w:"lecture",ph:"/?lekt??r/",m:"n. 讲座",ex:"The professor gave an interesting lecture.",ext:"教授做了一个有趣的讲座。",ex2:"I attended a lecture on English literature.",ext2:"我参加了一个英国文学的讲座。"},
+      {w:"assignment",ph:"/??sa?nm?nt/",m:"n. 作业",ex:"I have three assignments due this week.",ext:"这周我有三个作业要交。",ex2:"The teacher gave us a challenging assignment.",ext2:"老师给我们布置了一个有挑战性的作业。"},
+      {w:"examination",ph:"/?ɡ?z?m??ne??n/",m:"n. 考试",ex:"The final examination is next month.",ext:"期末考试在下个月。",ex2:"She passed the entrance examination.",ext2:"她通过了入学考试。"},
+      {w:"campus",ph:"/?k?mp?s/",m:"n. 校园",ex:"The campus is very beautiful in spring.",ext:"春天的校园非常美丽。",ex2:"Most students live on campus.",ext2:"大多数学生住在校园里。"},
+      {w:"dormitory",ph:"/?d??m?tri/",m:"n. 宿舍",ex:"I live in the student dormitory.",ext:"我住在学生宿舍。",ex2:"The dormitory is close to the library.",ext2:"宿舍离图书馆很近。"},
+      {w:"curriculum",ph:"/k??r?kj?l?m/",m:"n. 课程",ex:"The curriculum includes many subjects.",ext:"课程包括很多科目。",ex2:"We need to complete the curriculum this year.",ext2:"我们需要今年完成这个课程。"},
+      {w:"tuition",ph:"/tu???n/",m:"n. 学费",ex:"Tuition fees have increased this year.",ext:"今年学费上涨了。",ex2:"She got a loan to pay for tuition.",ext2:"她贷款支付学费。"},
+      {w:"diploma",ph:"/d??pl??m?/",m:"n. 文凭",ex:"She received her diploma at the ceremony.",ext:"她在典礼上收到了文凭。",ex2:"A high school diploma is important.",ext2:"高中文凭很重要。"},
+      {w:"tutor",ph:"/?tju?t?r/",m:"n. 导师；家庭教师",ex:"My tutor helps me with my studies.",ext:"我的导师帮助我学习。",ex2:"He works as a private tutor.",ext2:"他是一名私人家庭教师。"}
+    ],
+    Technology: [
+      {w:"technology",ph:"/tek?n?l?d?i/",m:"n. 技术",ex:"Technology is changing our lives.",ext:"技术在改变我们的生活。",ex2:"Modern technology has made communication easier.",ext2:"现代技术让交流更加便捷。"},
+      {w:"internet",ph:"/??nt?net/",m:"n. 互联网",ex:"The internet connects people worldwide.",ext:"互联网连接了世界各地的人们。",ex2:"I found the information on the internet.",ext2:"我在互联网上找到了这条信息。"},
+      {w:"digital",ph:"/?d?d??tl/",m:"adj. 数字的",ex:"Digital technology has advanced rapidly.",ext:"数字技术发展迅速。",ex2:"We live in a digital age.",ext2:"我们生活在一个数字时代。"},
+      {w:"device",ph:"/d??va?s/",m:"n. 设备",ex:"This device can translate languages.",ext:"这个设备可以翻译语言。",ex2:"Electronic devices are not allowed during the exam.",ext2:"考试期间不允许使用电子设备。"},
+      {w:"software",ph:"/?s?ftwe?r/",m:"n. 软件",ex:"The software needs to be updated.",ext:"这个软件需要更新。",ex2:"I installed new software on my computer.",ext2:"我在电脑上安装了新软件。"},
+      {w:"database",ph:"/?de?t?be?s/",m:"n. 数据库",ex:"The company has a large customer database.",ext:"公司有一个庞大的客户数据库。",ex2:"We need to search the database for records.",ext2:"我们需要在数据库中搜索记录。"},
+      {w:"network",ph:"/?netw??k/",m:"n. 网络",ex:"The social network connects millions of users.",ext:"这个社交网络连接了数百万用户。",ex2:"The office network is down.",ext2:"办公室网络瘫痪了。"},
+      {w:"innovation",ph:"/??n??ve??n/",m:"n. 创新",ex:"Innovation drives economic growth.",ext:"创新推动经济增长。",ex2:"The company is known for its innovation.",ext2:"这家公司以其创新而闻名。"},
+      {w:"artificial",ph:"/?ɑ?rt??f??l/",m:"adj. 人工的",ex:"Artificial intelligence is transforming industries.",ext:"人工智能正在改变各行各业。",ex2:"This product contains artificial sweeteners.",ext2:"这个产品含有人工甜味剂。"},
+      {w:"robot",ph:"/?r??b?t/",m:"n. 机器人",ex:"Robots are used in car manufacturing.",ext:"机器人被用于汽车制造。",ex2:"The robot can clean the house automatically.",ext2:"这个机器人可以自动打扫房子。"},
+      {w:"program",ph:"/?pr??ɡr?m/",m:"n. 程序；节目",ex:"I am learning to write computer programs.",ext:"我正在学习编写电脑程序。",ex2:"This TV program is very educational.",ext2:"这个电视节目很有教育意义。"},
+      {w:"download",ph:"/?da?nl??d/",m:"v. 下载",ex:"You can download the app for free.",ext:"你可以免费下载这个应用。",ex2:"I need to download the document.",ext2:"我需要下载这份文件。"},
+      {w:"update",ph:"/?p?de?t/",m:"v./n. 更新",ex:"Please update your software regularly.",ext:"请定期更新你的软件。",ex2:"There is a new update available.",ext2:"有一个新的更新可用。"},
+      {w:"virtual",ph:"/?v??t?u?l/",m:"adj. 虚拟的",ex:"Virtual reality is becoming more popular.",ext:"虚拟现实正变得越来越流行。",ex2:"We had a virtual meeting online.",ext2:"我们在线上开了一个虚拟会议。"}
+    ],
+    Environment: [
+      {w:"environment",ph:"/?n?va?r?nm?nt/",m:"n. 环境",ex:"We should protect the environment.",ext:"我们应该保护环境。",ex2:"The natural environment is beautiful here.",ext2:"这里的自然环境很美。"},
+      {w:"pollution",ph:"/p??lu??n/",m:"n. 污染",ex:"Air pollution is a serious problem.",ext:"空气污染是一个严重的问题。",ex2:"We need to reduce water pollution.",ext2:"我们需要减少水污染。"},
+      {w:"recycle",ph:"/ri??sa?kl/",m:"v. 回收利用",ex:"Please recycle paper and plastic.",ext:"请回收纸张和塑料。",ex2:"Many materials can be recycled.",ext2:"很多材料可以回收利用。"},
+      {w:"sustainable",ph:"/s??ste?n?bl/",m:"adj. 可持续的",ex:"We need sustainable development.",ext:"我们需要可持续发展。",ex2:"This is a sustainable energy source.",ext2:"这是一个可持续的能源来源。"},
+      {w:"climate",ph:"/?kla?m?t/",m:"n. 气候",ex:"Climate change affects everyone.",ext:"气候变化影响着每个人。",ex2:"The climate here is very pleasant.",ext2:"这里的气候非常宜人。"},
+      {w:"carbon",ph:"/?kɑ?b?n/",m:"n. 碳",ex:"We should reduce carbon emissions.",ext:"我们应该减少碳排放。",ex2:"Carbon dioxide causes global warming.",ext2:"二氧化碳导致全球变暖。"},
+      {w:"renewable",ph:"/r??nju??bl/",m:"adj. 可再生的",ex:"Solar energy is a renewable resource.",ext:"太阳能是一种可再生资源。",ex2:"We should invest in renewable energy.",ext2:"我们应该投资可再生能源。"},
+      {w:"conservation",ph:"/?k?ns??ve??n/",m:"n. 保护",ex:"Wildlife conservation is important.",ext:"野生动物保护很重要。",ex2:"Water conservation helps the environment.",ext2:"节约用水有助于环境保护。"},
+      {w:"ecosystem",ph:"/?i?k??s?st?m/",m:"n. 生态系统",ex:"The forest ecosystem is very complex.",ext:"森林生态系统非常复杂。",ex2:"We must protect the marine ecosystem.",ext2:"我们必须保护海洋生态系统。"},
+      {w:"global",ph:"/?ɡl??bl/",m:"adj. 全球的",ex:"Global warming is a major concern.",ext:"全球变暖是一个主要问题。",ex2:"We live in a global community.",ext2:"我们生活在一个全球社区中。"}
+    ],
+    Health: [
+      {w:"health",ph:"/helθ/",m:"n. 健康",ex:"Health is more important than wealth.",ext:"健康比财富更重要。",ex2:"You should take care of your health.",ext2:"你应该照顾好自己的健康。"},
+      {w:"exercise",ph:"/?eks?sa?z/",m:"n./v. 锻炼",ex:"Regular exercise keeps you fit.",ext:"定期锻炼让你保持健康。",ex2:"I exercise every morning.",ext2:"我每天早上锻炼。"},
+      {w:"nutrition",ph:"/nu?tr??n/",m:"n. 营养",ex:"Good nutrition is essential for health.",ext:"良好的营养对健康至关重要。",ex2:"This food has high nutritional value.",ext2:"这种食物营养价值很高。"},
+      {w:"medicine",ph:"/?med?sn/",m:"n. 药；医学",ex:"Take this medicine three times a day.",ext:"这个药一天吃三次。",ex2:"She is studying medicine at university.",ext2:"她在大学学医。"},
+      {w:"symptom",ph:"/?s?mpt?m/",m:"n. 症状",ex:"Common symptoms include fever and cough.",ext:"常见症状包括发烧和咳嗽。",ex2:"If symptoms persist, see a doctor.",ext2:"如果症状持续，请看医生。"},
+      {w:"mental",ph:"/?mentl/",m:"adj. 精神的；心理的",ex:"Mental health is just as important as physical health.",ext:"心理健康和身体健康同样重要。",ex2:"She practices mental exercises every day.",ext2:"她每天做心理练习。"},
+      {w:"diet",ph:"/?da??t/",m:"n. 饮食",ex:"A balanced diet is important.",ext:"均衡饮食很重要。",ex2:"She is on a special diet.",ext2:"她在进行特殊的饮食计划。"},
+      {w:"recover",ph:"/r??k?v?r/",m:"v. 恢复",ex:"He is recovering from a cold.",ext:"他正在从感冒中恢复。",ex2:"It took her a long time to recover.",ext2:"她花了很长时间才恢复。"},
+      {w:"prevent",ph:"/pr??vent/",m:"v. 预防",ex:"Exercise can prevent many diseases.",ext:"锻炼可以预防很多疾病。",ex2:"We should take steps to prevent accidents.",ext2:"我们应该采取措施预防事故。"},
+      {w:"immune",ph:"/??mju?n/",m:"adj. 免疫的",ex:"A strong immune system fights infections.",ext:"强壮的免疫系统对抗感染。",ex2:"Your body builds immunity over time.",ext2:"身体会逐渐建立免疫力。"}
+    ],
+    Society: [
+      {w:"society",ph:"/s??sa??ti/",m:"n. 社会",ex:"We all have responsibilities in society.",ext:"我们在社会中都有责任。",ex2:"A fair society benefits everyone.",ext2:"一个公平的社会惠及每个人。"},
+      {w:"culture",ph:"/?k?lt??r/",m:"n. 文化",ex:"China has a rich and ancient culture.",ext:"中国有丰富而古老的文化。",ex2:"Learning about different cultures is interesting.",ext2:"了解不同的文化很有趣。"},
+      {w:"economy",ph:"/??k?n?mi/",m:"n. 经济",ex:"The economy is growing steadily.",ext:"经济正在稳步增长。",ex2:"We need a strong economy.",ext2:"我们需要强大的经济。"},
+      {w:"government",ph:"/?ɡ?v?nm?nt/",m:"n. 政府",ex:"The government provides public services.",ext:"政府提供公共服务。",ex2:"She works for the local government.",ext2:"她在当地政府工作。"},
+      {w:"policy",ph:"/?p?l?si/",m:"n. 政策",ex:"The new policy takes effect next month.",ext:"新政策下个月生效。",ex2:"We need to review company policies.",ext2:"我们需要审查公司政策。"},
+      {w:"community",ph:"/k??mju?n?ti/",m:"n. 社区；共同体",ex:"The community came together to help.",ext:"社区团结起来提供帮助。",ex2:"She is active in the local community.",ext2:"她在当地社区很活跃。"},
+      {w:"volunteer",ph:"/?v?l?n?t??r/",m:"n./v. 志愿者",ex:"Many volunteers helped clean the park.",ext:"很多志愿者帮忙清理公园。",ex2:"I want to volunteer for charity work.",ext2:"我想做慈善志愿工作。"},
+      {w:"charity",ph:"/?t??r?ti/",m:"n. 慈善",ex:"They donated money to charity.",ext:"他们把钱捐给了慈善机构。",ex2:"Charity organizations help the poor.",ext2:"慈善组织帮助穷人。"},
+      {w:"equality",ph:"/i??kw?l?ti/",m:"n. 平等",ex:"Everyone deserves equality of opportunity.",ext:"每个人都应享有平等的机会。",ex2:"Gender equality is a basic human right.",ext2:"性别平等是一项基本人权。"},
+      {w:"tradition",ph:"/tr??d??n/",m:"n. 传统",ex:"It's a tradition to celebrate the Spring Festival.",ext:"庆祝春节是一个传统。",ex2:"We should respect local traditions.",ext2:"我们应该尊重当地传统。"}
+    ]
+  },
+  cet6: {
+    Education: [
+      {w:"pedagogy",ph:"/?ped?ɡ?d?i/",m:"n. 教育学；教学法",ex:"The university focuses on innovative pedagogy.",ext:"这所大学专注于创新教学法。",ex2:"Modern pedagogy encourages student participation.",ext2:"现代教学法鼓励学生参与。"},
+      {w:"curriculum",ph:"/k??r?kj?l?m/",m:"n. 全部课程",ex:"The curriculum has been updated for this year.",ext:"今年的课程已经更新。",ex2:"They are designing a new curriculum.",ext2:"他们正在设计新的课程体系。"},
+      {w:"academic",ph:"/??k??dem?k/",m:"adj. 学术的",ex:"She has an impressive academic record.",ext:"她有令人印象深刻的学术记录。",ex2:"Academic freedom is essential for universities.",ext2:"学术自由对大学至关重要。"},
+      {w:"literacy",ph:"/?l?t?r?si/",m:"n. 读写能力",ex:"Literacy rates have improved significantly.",ext:"识字率有了显著提高。",ex2:"The program promotes digital literacy.",ext2:"该项目推广数字素养。"},
+      {w:"syllabus",ph:"/?s?l?b?s/",m:"n. 教学大纲",ex:"The syllabus outlines the course requirements.",ext:"教学大纲列出了课程要求。",ex2:"Please check the syllabus for due dates.",ext2:"请查看教学大纲中的截止日期。"},
+      {w:"competence",ph:"/?k?mp?t?ns/",m:"n. 能力；胜任",ex:"The course develops communicative competence.",ext:"这门课培养交际能力。",ex2:"Professional competence is highly valued.",ext2:"专业能力受到高度重视。"},
+      {w:"enroll",ph:"/?n?r??l/",m:"v. 注册；入学",ex:"She enrolled in a Chinese literature course.",ext:"她注册了一门中国文学课程。",ex2:"The university enrolls thousands of students each year.",ext2:"这所大学每年招收数千名学生。"},
+      {w:"mentor",ph:"/?ment??r/",m:"n. 导师；指导者",ex:"My mentor gave me valuable career advice.",ext:"我的导师给了我宝贵的职业建议。",ex2:"A good mentor can change your life.",ext2:"一个好的导师可以改变你的人生。"},
+      {w:"proficiency",ph:"/pr??f??nsi/",m:"n. 熟练；精通",ex:"She has a high level of English proficiency.",ext:"她的英语熟练程度很高。",ex2:"The test measures language proficiency.",ext2:"这项测试衡量语言熟练度。"},
+      {w:"dissertation",ph:"/?d?s??te??n/",m:"n. 论文；专题论述",ex:"He is writing his doctoral dissertation.",ext:"他正在写博士论文。",ex2:"The dissertation must be submitted by Friday.",ext2:"论文必须在星期五前提交。"}
+    ],
+    Technology: [
+      {w:"algorithm",ph:"/??lɡ?r?e?m/",m:"n. 算法",ex:"The algorithm processes data efficiently.",ext:"该算法高效处理数据。",ex2:"Machine learning algorithms power AI systems.",ext2:"机器学习算法驱动AI系统。"},
+      {w:"cybersecurity",ph:"/?sa?b?rs??kj??r?ti/",m:"n. 网络安全",ex:"Cybersecurity is a growing concern for companies.",ext:"网络安全是公司日益关注的问题。",ex2:"We need to strengthen our cybersecurity measures.",ext2:"我们需要加强网络安全措施。"},
+      {w:"encryption",ph:"/?n?kr?p?n/",m:"n. 加密",ex:"Encryption protects sensitive data.",ext:"加密保护敏感数据。",ex2:"End-to-end encryption ensures privacy.",ext2:"端到端加密确保隐私。"},
+      {w:"automation",ph:"/???t??me??n/",m:"n. 自动化",ex:"Automation has transformed manufacturing.",ext:"自动化改变了制造业。",ex2:"Many jobs are affected by automation.",ext2:"许多工作受到自动化的影响。"},
+      {w:"bandwidth",ph:"/?b?ndw?dθ/",m:"n. 带宽",ex:"The video requires high bandwidth.",ext:"这个视频需要高带宽。",ex2:"Internet bandwidth has increased dramatically.",ext2:"网络带宽大幅增加。"},
+      {w:"nanotechnology",ph:"/?n?n??tek?n?l?d?i/",m:"n. 纳米技术",ex:"Nanotechnology has applications in medicine.",ext:"纳米技术在医学有应用。",ex2:"Researchers are advancing nanotechnology.",ext2:"研究人员正在推进纳米技术。"},
+      {w:"blockchain",ph:"/?bl?kt?e?n/",m:"n. 区块链",ex:"Blockchain technology ensures data integrity.",ext:"区块链技术确保数据完整性。",ex2:"Many industries are adopting blockchain.",ext2:"许多行业正在采用区块链。"},
+      {w:"interface",ph:"/??nt?fe?s/",m:"n. 界面；接口",ex:"The user interface is very intuitive.",ext:"用户界面非常直观。",ex2:"The software has a clean interface.",ext2:"这个软件有一个简洁的界面。"},
+      {w:"encryption",ph:"/?n?kr?p?n/",m:"n. 加密技术",ex:"Modern encryption keeps data secure.",ext:"现代加密技术确保数据安全。",ex2:"The system uses advanced encryption.",ext2:"该系统使用先进的加密技术。"},
+      {w:"artificial_intelligence",ph:"/?ɑ?rt??f??l ?n?tel?d??ns/",m:"n. 人工智能",ex:"Artificial intelligence is revolutionizing healthcare.",ext:"人工智能正在革新医疗保健。",ex2:"AI technology continues to advance rapidly.",ext2:"AI技术持续快速发展。"}
+    ],
+    Environment: [
+      {w:"biodiversity",ph:"/?ba???da??v??s?ti/",m:"n. 生物多样性",ex:"Rainforests are rich in biodiversity.",ext:"热带雨林生物多样性丰富。",ex2:"We must protect biodiversity for future generations.",ext2:"我们必须为子孙后代保护生物多样性。"},
+      {w:"deforestation",ph:"/di??f?r??ste??n/",m:"n. 森林砍伐",ex:"Deforestation threatens many species.",ext:"森林砍伐威胁着许多物种。",ex2:"Deforestation rates are alarming.",ext2:"森林砍伐率令人担忧。"},
+      {w:"emission",ph:"/i?m??n/",m:"n. 排放",ex:"The government aims to reduce carbon emissions.",ext:"政府旨在减少碳排放。",ex2:"Vehicle emissions contribute to air pollution.",ext2:"车辆排放物导致空气污染。"},
+      {w:"mitigate",ph:"/?m?t?ɡe?t/",m:"v. 减轻；缓解",ex:"We need to mitigate the effects of climate change.",ext:"我们需要减轻气候变化的影响。",ex2:"New policies aim to mitigate environmental damage.",ext2:"新政策旨在减轻环境损害。"},
+      {w:"ecological",ph:"/?i?k??l?d??kl/",m:"adj. 生态的",ex:"The region has a unique ecological system.",ext:"该地区有独特的生态系统。",ex2:"Ecological balance is essential for survival.",ext2:"生态平衡对生存至关重要。"},
+      {w:"depletion",ph:"/d??pli??n/",m:"n. 耗尽；枯竭",ex:"Ozone depletion is a serious concern.",ext:"臭氧层耗尽是一个严重问题。",ex2:"Resource depletion threatens future generations.",ext2:"资源枯竭威胁着子孙后代。"},
+      {w:"conservationist",ph:"/?k?ns??ve???n?st/",m:"n. 环境保护主义者",ex:"Conservationists work to protect wildlife.",ext:"环境保护主义者致力于保护野生动物。",ex2:"She is a passionate conservationist.",ext2:"她是一位充满热情的环境保护主义者。"},
+      {w:"renewable",ph:"/r??nju??bl/",m:"adj. 可再生的",ex:"Wind power is a renewable energy source.",ext:"风能是一种可再生能源。",ex2:"The country is investing heavily in renewable energy.",ext2:"该国正在大力投资可再生能源。"},
+      {w:"carbon_footprint",ph:"/?kɑ?b?n ?f?tpr?nt/",m:"n. 碳足迹",ex:"We should try to reduce our carbon footprint.",ext:"我们应该努力减少碳足迹。",ex2:"The company measures its carbon footprint yearly.",ext2:"该公司每年测量其碳足迹。"},
+      {w:"sustainability",ph:"/s??ste?n??b?l?ti/",m:"n. 可持续性",ex:"Sustainability is key to our future.",ext:"可持续性是我们未来的关键。",ex2:"The company focuses on long-term sustainability.",ext2:"该公司专注于长期可持续性。"}
+    ],
+    Economy: [
+      {w:"inflation",ph:"/?n?fle??n/",m:"n. 通货膨胀",ex:"Inflation affects the cost of living.",ext:"通货膨胀影响生活成本。",ex2:"The central bank is trying to control inflation.",ext2:"中央银行正试图控制通货膨胀。"},
+      {w:"recession",ph:"/r??se?n/",m:"n. 经济衰退",ex:"The economy is in a recession.",ext:"经济正处于衰退期。",ex2:"Many businesses closed during the recession.",ext2:"许多企业在经济衰退期间倒闭了。"},
+      {w:"investment",ph:"/?n?vestm?nt/",m:"n. 投资",ex:"Education is a good investment.",ext:"教育是一项好的投资。",ex2:"Foreign investment boosts the economy.",ext2:"外国投资促进经济发展。"},
+      {w:"entrepreneur",ph:"/??ntr?pr??n??r/",m:"n. 企业家",ex:"She is a successful entrepreneur.",ext:"她是一位成功的企业家。",ex2:"Young entrepreneurs are driving innovation.",ext2:"年轻企业家正在推动创新。"},
+      {w:"dividend",ph:"/?d?v?dend/",m:"n. 股息；红利",ex:"The company pays a quarterly dividend.",ext:"该公司每季度支付股息。",ex2:"Shareholders received a high dividend.",ext2:"股东获得了高额股息。"},
+      {w:"monopoly",ph:"/m??n?p?li/",m:"n. 垄断",ex:"The company has a monopoly on the market.",ext:"该公司垄断了市场。",ex2:"Monopolies can harm consumer interests.",ext2:"垄断可能损害消费者利益。"},
+      {w:"subsidy",ph:"/?s?bs?di/",m:"n. 补贴",ex:"The government provides subsidies for renewable energy.",ext:"政府为可再生能源提供补贴。",ex2:"Agricultural subsidies support farmers.",ext2:"农业补贴支持农民。"},
+      {w:"tariff",ph:"/?t?r?f/",m:"n. 关税",ex:"New tariffs were imposed on imported goods.",ext:"对进口商品征收了新关税。",ex2:"Tariffs affect international trade.",ext2:"关税影响国际贸易。"},
+      {w:"stakeholder",ph:"/?ste?kh??ld?r/",m:"n. 利益相关者",ex:"All stakeholders were invited to the meeting.",ext:"所有利益相关者都被邀请参加会议。",ex2:"We must consider the interests of all stakeholders.",ext2:"我们必须考虑所有利益相关者的利益。"},
+      {w:"fiscal",ph:"/?f?skl/",m:"adj. 财政的",ex:"Fiscal policy affects the economy.",ext:"财政政策影响经济。",ex2:"The government announced new fiscal measures.",ext2:"政府宣布了新的财政措施。"}
+    ],
+    Psychology: [
+      {w:"psychology",ph:"/sa??k?l?d?i/",m:"n. 心理学",ex:"She is studying psychology at university.",ext:"她在大学学习心理学。",ex2:"Psychology helps us understand behavior.",ext2:"心理学帮助我们理解行为。"},
+      {w:"cognitive",ph:"/?k?ɡn?t?v/",m:"adj. 认知的",ex:"Cognitive development continues throughout life.",ext:"认知发展贯穿一生。",ex2:"The study focuses on cognitive processes.",ext2:"这项研究侧重于认知过程。"},
+      {w:"motivation",ph:"/?m??t??ve??n/",m:"n. 动机",ex:"Motivation is key to success.",ext:"动机是成功的关键。",ex2:"Students need intrinsic motivation to learn.",ext2:"学生需要内在动机来学习。"},
+      {w:"perception",ph:"/p?r?sep?n/",m:"n. 感知；认知",ex:"Our perception of reality is subjective.",ext:"我们对现实的感知是主观的。",ex2:"Visual perception is complex.",ext2:"视觉感知很复杂。"},
+      {w:"personality",ph:"/?p??rs??n?l?ti/",m:"n. 人格；个性",ex:"Personality traits affect career choices.",ext:"人格特质影响职业选择。",ex2:"She has a warm and friendly personality.",ext2:"她有温暖友好的个性。"},
+      {w:"empathy",ph:"/?emp?θi/",m:"n. 共情；同理心",ex:"Empathy allows us to understand others' feelings.",ext:"共情让我们理解他人的感受。",ex2:"She showed great empathy for her students.",ext2:"她对她的学生表现出很强的同理心。"},
+      {w:"resilience",ph:"/r??z?li?ns/",m:"n. 韧性；恢复力",ex:"Resilience helps people overcome challenges.",ext:"韧性帮助人们克服挑战。",ex2:"Building resilience is important for mental health.",ext2:"培养韧性对心理健康很重要。"},
+      {w:"subconscious",ph:"/s?b?k?n??s/",m:"adj./n. 潜意识",ex:"Habits are formed in the subconscious mind.",ext:"习惯在潜意识中形成。",ex2:"Subconscious thoughts influence our behavior.",ext2:"潜意识想法影响我们的行为。"},
+      {w:"behavioral",ph:"/b??he?vj?r?l/",m:"adj. 行为的",ex:"Behavioral therapy helps change habits.",ext:"行为疗法帮助改变习惯。",ex2:"The study examines behavioral patterns.",ext2:"这项研究考察行为模式。"},
+      {w:"self_esteem",ph:"/self ??sti?m/",m:"n. 自尊",ex:"Positive feedback builds self-esteem.",ext:"积极的反馈建立自尊。",ex2:"Low self-esteem can affect performance.",ext2:"低自尊可能影响表现。"}
+    ]
+  }
+};
+function getTopics(level){return Object.keys(VOCAB_DB[level]||{});}
+function getWords(level,topic,count){
+  let pool=topic&&topic!=='random'?(VOCAB_DB[level][topic]||[]):Object.values(VOCAB_DB[level]).flat();
+  if(!pool.length)pool=Object.values(VOCAB_DB[level]).flat();
+  return [...pool].sort(()=>Math.random()-.5).slice(0,count||10);
+}
+function getSentences(level,topic,count){
+  let pool=[];(topic&&topic!=='random'?[VOCAB_DB[level][topic]||[]].flat():Object.values(VOCAB_DB[level]).flat()).forEach(w=>{
+    pool.push({text:w.ex,trans:w.ext,word:w.w});
+    if(w.ex2)pool.push({text:w.ex2,trans:w.ext2,word:w.w});
+  });
+  return [...pool].sort(()=>Math.random()-.5).slice(0,count||5);
+}
+</script>
+<script>﻿// ====== App State ======
+const STATE = {
+  mode: 'cet4',
+  type: 'word',
+  topic: 'random',
+  accent: 'us',
+  items: [],
+  index: 0,
+  scores: [],
+  sessionStart: null,
+  isRecording: false,
+  mediaRecorder: null,
+  audioChunks: [],
+  recordedBlob: null,
+  darkMode: false,
+  eyeCare: false,
+  dailyWordGoal: 10,
+  dailySentenceGoal: 5,
+  wrongWords: JSON.parse(localStorage.getItem('speaker_wrong')||'[]'),
+  records: JSON.parse(localStorage.getItem('speaker_records')||'[]')
+};
+
+// ====== Init ======
+document.addEventListener('DOMContentLoaded',()=>{
+  loadSettings();
+  renderHome();
+  renderBadges();
+  setupTopics();
+  updateDailyGoal();
+  setGreeting();
+  setInterval(()=>{
+    if(document.querySelector('.page.active')?.id==='pageHome')renderHome();
+  },30000);
+});
+
+// ====== Navigation ======
+function switchPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page'+name.charAt(0).toUpperCase()+name.slice(1)).classList.add('active');
+  document.querySelector(`.nav-item[data-page="${name}"]`).classList.add('active');
+  if(name==='home'){renderHome();}
+  if(name==='records'){renderRecords();}
+  if(name==='profile'){renderBadges();updateProfileStats();}
+  if(name==='practice'){if(STATE.items.length)updatePracticeUI();}
+}
+document.querySelectorAll('.nav-item').forEach(item=>{
+  item.addEventListener('click',()=>switchPage(item.dataset.page));
+});
+
+// ====== Greeting ======
+function setGreeting(){
+  const h=new Date().getHours();
+  let g='?? 晚上好',s='今天的学习结束了吗？';
+  if(h<12){g='?? 早上好';s='今天也要加油练习口语哦！';}
+  else if(h<18){g='?? 下午好';s='午后时光，练练口语吧！';}
+  else if(h<22){g='?? 晚上好';s='晚上安静，适合练习发音！';}
+  document.getElementById('greetingText').textContent=g;
+  document.getElementById('greetingSub').textContent=s;
+}
+
+// ====== Theme ======
+function toggleTheme(){
+  if(STATE.darkMode) toggleDarkMode();
+  else if(STATE.eyeCare) toggleEyeCare();
+  else {toggleDarkMode();}
+}
+function toggleDarkMode(){
+  STATE.darkMode=!STATE.darkMode;
+  document.body.classList.toggle('dark-mode',STATE.darkMode);
+  if(STATE.darkMode&&STATE.eyeCare){STATE.eyeCare=false;document.body.classList.remove('eye-care-mode');document.getElementById('eyeCareToggle').checked=false;}
+  document.getElementById('darkToggle').checked=STATE.darkMode;
+  localStorage.setItem('speaker_dark',STATE.darkMode);
+}
+function toggleEyeCare(){
+  STATE.eyeCare=!STATE.eyeCare;
+  document.body.classList.toggle('eye-care-mode',STATE.eyeCare);
+  if(STATE.eyeCare&&STATE.darkMode){STATE.darkMode=false;document.body.classList.remove('dark-mode');document.getElementById('darkToggle').checked=false;}
+  document.getElementById('eyeCareToggle').checked=STATE.eyeCare;
+  localStorage.setItem('speaker_eyeCare',STATE.eyeCare);
+}
+
+// ====== Settings ======
+function loadSettings(){
+  STATE.darkMode=localStorage.getItem('speaker_dark')==='true';
+  STATE.eyeCare=localStorage.getItem('speaker_eyeCare')==='true';
+  STATE.accent=localStorage.getItem('speaker_accent')||'us';
+  STATE.dailyWordGoal=parseInt(localStorage.getItem('speaker_dailyWord')||'10');
+  STATE.dailySentenceGoal=parseInt(localStorage.getItem('speaker_dailySentence')||'5');
+  if(STATE.darkMode)document.body.classList.add('dark-mode');
+  if(STATE.eyeCare)document.body.classList.add('eye-care-mode');
+  document.getElementById('darkToggle').checked=STATE.darkMode;
+  document.getElementById('eyeCareToggle').checked=STATE.eyeCare;
+  document.getElementById('profileAccent').value=STATE.accent;
+  document.getElementById('accentSelect').value=STATE.accent;
+  document.getElementById('dailyWordGoal').value=STATE.dailyWordGoal;
+  document.getElementById('dailySentenceGoal').value=STATE.dailySentenceGoal;
+}
+function updateAccent(v){STATE.accent=v;localStorage.setItem('speaker_accent',v);document.getElementById('accentSelect').value=v;showToast('发音已切换');}
+function updateDailyGoal(){
+  STATE.dailyWordGoal=parseInt(document.getElementById('dailyWordGoal').value);
+  STATE.dailySentenceGoal=parseInt(document.getElementById('dailySentenceGoal').value);
+  localStorage.setItem('speaker_dailyWord',STATE.dailyWordGoal);
+  localStorage.setItem('speaker_dailySentence',STATE.dailySentenceGoal);
+  renderHome();
+  showToast('每日目标已更新');
+}
+function updateVocab(v){STATE.mode=v;showToast('词库已切换至'+(v==='cet4'?'四级':'六级'));}
+
+// ====== Practice Setup ======
+function selectExamMode(el,mode){
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  STATE.mode=mode;
+  setupTopics();
+}
+function setupTopics(){
+  const topics=getTopics(STATE.mode);
+  const c=document.getElementById('topicChips');
+  c.innerHTML='<div class="tab-item active" onclick="selectTopic(this,\'random\')">?? 随机</div>'+
+    topics.map(t=>`<div class="tab-item" onclick="selectTopic(this,'${t}')">${t==='Education'?'??':t==='Technology'?'??':t==='Environment'?'??':t==='Health'?'??':t==='Society'?'??':t==='Economy'?'??':t==='Psychology'?'??':'??'} ${t}</div>`).join('');
+}
+function selectTopic(el,topic){
+  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  STATE.topic=topic;
+}
+function selectPracticeType(type){
+  STATE.type=type;
+  document.querySelectorAll('#practiceSetup .btn-outline').forEach(b=>b.classList.remove('btn-primary'));
+  document.querySelectorAll('#practiceSetup .btn-outline').forEach(b=>{b.style.background='';b.style.color='';});
+  event.target.style.background='var(--primary)';
+  event.target.style.color='#fff';
+}
+
+function beginPractice(){
+  const type=STATE.type||'word';
+  const count=type==='word'?STATE.dailyWordGoal:STATE.dailySentenceGoal;
+  STATE.accent=document.getElementById('accentSelect').value;
+  if(type==='word')STATE.items=getWords(STATE.mode,STATE.topic,count);
+  else STATE.items=getSentences(STATE.mode,STATE.topic,count);
+  STATE.index=0;
+  STATE.scores=[];
+  STATE.sessionStart=Date.now();
+  document.getElementById('practiceSetup').style.display='none';
+  document.getElementById('practiceSession').style.display='block';
+  document.getElementById('practiceComplete').style.display='none';
+  updatePracticeUI();
+  document.getElementById('practiceModeTag').textContent=(STATE.mode==='cet4'?'四级':'六级')+' · '+(type==='word'?'单词':'句子');
+  switchPage('practice');
+}
+// ====== Start Practice (from home quick-start) ======
+function startPractice(count,type,level,topic){
+  STATE.mode=level||STATE.mode;
+  STATE.type=type||'word';
+  STATE.topic=topic||'random';
+  STATE.accent=document.getElementById('accentSelect').value||STATE.accent;
+  const c=count||(STATE.type==='word'?STATE.dailyWordGoal:STATE.dailySentenceGoal);
+  if(STATE.type==='word')STATE.items=getWords(STATE.mode,STATE.topic,c);
+  else STATE.items=getSentences(STATE.mode,STATE.topic,c);
+  STATE.index=0;
+  STATE.scores=[];
+  STATE.sessionStart=Date.now();
+  document.getElementById('practiceSetup').style.display='none';
+  document.getElementById('practiceSession').style.display='block';
+  document.getElementById('practiceComplete').style.display='none';
+  updatePracticeUI();
+  document.getElementById('practiceModeTag').textContent=(STATE.mode==='cet4'?'四级':'六级')+' · '+(STATE.type==='word'?'单词':'句子');
+  switchPage('practice');
+}
+
+// ====== Practice UI ======
+function updatePracticeUI(){
+  const item=STATE.items[STATE.index];
+  if(!item){finishPractice();return;}
+  document.getElementById('practiceCounter').textContent=`第 ${STATE.index+1} / ${STATE.items.length} 个`;
+  document.getElementById('scoreResult').style.display='none';
+  document.getElementById('skipBtn').style.display='inline-flex';
+  document.getElementById('playResultBtn').style.display='none';
+  document.getElementById('recordBtn').disabled=false;
+  document.getElementById('recordBtn').classList.remove('recording');
+  document.querySelector('.waveform').classList.remove('active');
+
+  if(STATE.type==='word'){
+    document.getElementById('practiceWord').textContent=item.w;
+    document.getElementById('practicePhonetic').textContent=item.ph;
+    document.getElementById('practiceMeaning').textContent=item.m;
+    document.getElementById('practiceExample').textContent='"'+item.ex+'"';
+    document.getElementById('practiceExampleTrans').textContent=item.ext;
+  } else {
+    document.getElementById('practiceWord').textContent=item.text;
+    document.getElementById('practicePhonetic').textContent='';
+    document.getElementById('practiceMeaning').textContent='';
+    document.getElementById('practiceExample').textContent='"'+item.text+'"';
+    document.getElementById('practiceExampleTrans').textContent=item.trans;
+  }
+}
+
+// ====== Text-to-Speech ======
+function playStandard(){
+  const text=STATE.type==='word'?STATE.items[STATE.index].w:STATE.items[STATE.index].text;
+  const lang=STATE.accent==='uk'?'en-GB':'en-US';
+  if(window.speechSynthesis){
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=0.85;u.pitch=1;
+    window.speechSynthesis.speak(u);
+  } else {showToast('浏览器不支持语音合成');}
+}
+
+// ====== Recording ======
+async function toggleRecording(){
+  if(STATE.isRecording){stopRecording();return;}
+  try{
+    if(!STATE.mediaStream){
+      STATE.mediaStream=await navigator.mediaDevices.getUserMedia({audio:true});
+    }
+    const stream=STATE.mediaStream;
+    STATE.mediaRecorder=new MediaRecorder(stream);
+    STATE.audioChunks=[];
+    STATE.mediaRecorder.ondataavailable=e=>{STATE.audioChunks.push(e.data);};
+    STATE.mediaRecorder.onstop=()=>{
+      STATE.recordedBlob=new Blob(STATE.audioChunks,{type:'audio/webm'});
+      evaluateRecording();
+    };
+    STATE.mediaRecorder.start();
+    STATE.isRecording=true;
+    document.getElementById('recordBtn').classList.add('recording');
+    document.getElementById('recordBtn').textContent='?';
+    document.querySelector('.waveform').classList.add('active');
+  }catch(e){showToast('请允许麦克风权限以使用录音功能');}
+}function stopRecording(){
+  if(STATE.mediaRecorder&&STATE.mediaRecorder.state!=='inactive'){
+    STATE.mediaRecorder.stop();
+  }
+  STATE.isRecording=false;
+  document.getElementById('recordBtn').classList.remove('recording');
+  document.getElementById('recordBtn').textContent='??';
+  document.querySelector('.waveform').classList.remove('active');
+}// ====== Play User Recording ======
+function playResult(){
+  if(!STATE.recordedBlob)return;
+  const u=URL.createObjectURL(STATE.recordedBlob);
+  const a=new Audio(u);
+  a.onended=()=>URL.revokeObjectURL(u);
+  a.play();
+}
+
+// ====== Pronunciation Evaluation ======
+function evaluateRecording(){
+  const item=STATE.items[STATE.index];
+  const text=STATE.type==='word'?item.w:item.text;
+  const words=text.split(' ');
+
+  // Simulated scoring engine with realistic variation
+  const baseScore=55+Math.random()*40;
+  const accuracy=baseScore-5+Math.random()*10;
+  const fluency=55+Math.random()*40;
+  const completeness=60+Math.random()*35;
+  const overall=Math.round((accuracy*0.5+fluency*0.3+completeness*0.2));
+
+  // Per-word scoring
+  const wordScores=words.map(w=>{
+    const r=Math.random();
+    if(r<0.4)return{word:w,status:'good',score:80+Math.random()*20};
+    if(r<0.7)return{word:w,status:'ok',score:55+Math.random()*25};
+    return{word:w,status:'needs-work',score:20+Math.random()*35};
+  });
+
+  // Improvement tips
+  const tips=[
+    '注意元音的饱满度，尤其是长元音 /i?/ 和 /u?/。',
+    '多练习 /θ/ 和 /e/ 的咬舌音，中文中没有这两个音。',
+    '注意单词重音位置，不要平均分配重音。',
+    '连读时要注意辅音和元音的自然过渡。',
+    '句尾语调要保持自然，不要过于平直。',
+    '注意 /r/ 和 /l/ 的区别，这对中文母语者很有挑战。',
+    '辅音 /v/ 和 /w/ 要区分清楚。',
+    '多练习鼻腔音 /n/ 和 /?/ 的区分。',
+    '注意句子节奏，实词重读，虚词弱读。',
+    '词尾的辅音不要吞掉，特别是 /t/, /d/, /k/, /g/。'
+  ];
+  const tip=tips[Math.floor(Math.random()*tips.length)];
+
+  // Store score
+  STATE.scores.push({score:overall,word:text,item:item});
+
+  // Render result
+  const sr=document.getElementById('scoreResult');
+  const scoreColor=overall>=80?'var(--success)':overall>=60?'var(--accent)':'var(--danger)';
+  const emoji=overall>=80?'??':overall>=60?'??':'??';
+
+  sr.innerHTML=`
+    <div class="score-result">
+      <div class="score-circle" style="background:${scoreColor}20;color:${scoreColor}">
+        <div class="score-number">${overall}</div>
+        <div class="score-label">分</div>
+      </div>
+      <div style="font-size:32px">${emoji}</div>
+      <div class="score-detail">
+        <div class="score-detail-item"><div class="value" style="color:${scoreColor}">${Math.round(accuracy)}</div><div class="label">准确度</div></div>
+        <div class="score-detail-item"><div class="value" style="color:var(--primary)">${Math.round(fluency)}</div><div class="label">流利度</div></div>
+        <div class="score-detail-item"><div class="value" style="color:var(--primary)">${Math.round(completeness)}</div><div class="label">完整度</div></div>
+      </div>
+      <div class="word-highlight">${wordScores.map(ws=>`<span class="word-tag ${ws.status}">${ws.word}</span>`).join('')}</div>
+      <div class="feedback-box"><div class="tip"><strong>?? 改进建议</strong><br>${tip}</div></div>
+      <button style='margin-top:16px;width:100%;padding:14px 24px;background:#2d9b7a;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit' onclick='nextPracticeItem()'>下一个 →</button>
+    </div>`;
+  sr.style.display='block';
+
+  document.getElementById('playResultBtn').style.display='inline-flex';
+  setTimeout(()=>document.getElementById('practiceActions').scrollIntoView({behavior:'smooth',block:'nearest'}),100);
+
+  // Show confetti for high scores
+  if(overall>=85)showConfetti();
+}
+// ====== Next Item ======
+function nextPracticeItem(){
+  STATE.index++;
+  if(STATE.index>=STATE.items.length){
+    finishPractice();
+  } else {
+    updatePracticeUI();
+  }
+}
+
+// ====== Finish Practice ======
+function finishPractice(){
+  document.getElementById('practiceSession').style.display='none';
+  document.getElementById('practiceComplete').style.display='block';
+
+  const total=STATE.scores.length;
+  const avg=total?Math.round(STATE.scores.reduce((a,s)=>a+s.score,0)/total):0;
+  document.getElementById('completeSummary').textContent=`本次练习共完成 ${total} 个${STATE.type==='word'?'单词':'句子'}`;
+  document.getElementById('completeScore').textContent=avg;
+
+  // Word tags
+  const tags=STATE.scores.map(s=>{
+    const cls=s.score>=80?'good':s.score>=60?'ok':'needs-work';
+    const word=typeof s.item==='object'?(s.item.w||s.item.word||s.word):s.word;
+    return `<span class="word-tag ${cls}">${word||'—'} ${s.score}</span>`;
+  }).join('');
+  document.getElementById('completeWordTags').innerHTML=tags;
+
+  // Save record
+  const duration=Math.round((Date.now()-STATE.sessionStart)/1000);
+  const record={
+    date:new Date().toISOString(),
+    mode:STATE.mode,
+    type:STATE.type,
+    count:total,
+    score:avg,
+    duration:duration,
+    scores:STATE.scores.slice()
+  };
+  STATE.records.push(record);
+  STATE.records.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  STATE.records=STATE.records.slice(0,500);
+  localStorage.setItem('speaker_records',JSON.stringify(STATE.records));
+
+  // Track wrong words
+  STATE.scores.filter(s=>s.score<70).forEach(s=>{
+    const word=(typeof s.item==='object'?(s.item.w||s.word):s.word)||'';
+    if(!word)return;
+    const existing=STATE.wrongWords.find(w=>w.word===word);
+    if(existing){existing.count=(existing.count||1)+1;existing.lastDate=new Date().toISOString();}
+    else STATE.wrongWords.push({word:word,count:1,date:new Date().toISOString(),lastDate:new Date().toISOString(),mode:STATE.mode});
+  });
+  STATE.wrongWords.sort((a,b)=>b.count-a.count);
+  STATE.wrongWords=STATE.wrongWords.slice(0,100);
+  localStorage.setItem('speaker_wrong',JSON.stringify(STATE.wrongWords));
+
+  // Celebration for goal completion
+  const todayRecords=STATE.records.filter(r=>{const d=new Date(r.date);const t=new Date();return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear();});
+  const todayWords=todayRecords.filter(r=>r.type==='word').reduce((a,r)=>a+r.count,0);
+  const todaySentences=todayRecords.filter(r=>r.type==='sentence').reduce((a,r)=>a+r.count,0);
+  if(todayWords>=STATE.dailyWordGoal&&todaySentences>=STATE.dailySentenceGoal){
+    setTimeout(()=>{
+      showModal('?? 太棒了！','你已完成今日全部目标！继续坚持，口语一定会越来越好！',()=>{});
+    },500);
+    showConfetti();
+  } else if(avg>=85){
+    setTimeout(()=>showToast('&#x1f31f; 这次表现很棒！'),500);
+  }
+
+  renderHome();
+  checkBadges();
+}
+
+// ====== Home Render ======
+function renderHome(){
+  const today=new Date();
+  const todayRecords=STATE.records.filter(r=>{const d=new Date(r.date);return d.getDate()===today.getDate()&&d.getMonth()===today.getMonth()&&d.getFullYear()===today.getFullYear();});
+  const todayWords=todayRecords.filter(r=>r.type==='word').reduce((a,r)=>a+r.count,0);
+  const todaySentences=todayRecords.filter(r=>r.type==='sentence').reduce((a,r)=>a+r.count,0);
+  const wordGoal=STATE.dailyWordGoal;
+  const sentGoal=STATE.dailySentenceGoal;
+  const wordPct=Math.min(100,Math.round(todayWords/wordGoal*100));
+  const sentPct=Math.min(100,Math.round(todaySentences/sentGoal*100));
+  const totalPct=Math.round((wordPct+sentPct)/2);
+
+  document.getElementById('todayLabel').textContent=`单词 ${todayWords}/${wordGoal} · 句子 ${todaySentences}/${sentGoal}`;
+  if(totalPct>=100){
+    document.getElementById('todayDetail').textContent='?? 今日目标已完成！你太棒了！';
+  } else if(totalPct>0){
+    document.getElementById('todayDetail').textContent='继续保持，离目标越来越近了！';
+  } else {
+    document.getElementById('todayDetail').textContent='今天还没开始练习，快去看看吧！';
+  }
+  document.getElementById('progressPercent').textContent=totalPct+'%';
+  const circumference=213.6;
+  document.getElementById('progressRing').style.strokeDashoffset=circumference-circumference*totalPct/100;
+
+  // Wrong word count
+  document.getElementById('wrongCountHome').textContent=`(${STATE.wrongWords.length} 个待复习)`;
+
+  // Mini chart
+  const recent=STATE.records.slice(0,7).reverse();
+  const chart=document.getElementById('homeChart');
+  if(recent.length){
+    chart.innerHTML=recent.map(r=>`<div class="bar ${r.score>=70?'filled':''}" style="height:${Math.max(8,r.score/100*44)}px;border-radius:3px 3px 0 0" title="${new Date(r.date).toLocaleDateString()}: ${r.score}分"></div>`).join('');
+  } else {
+    chart.innerHTML='<div style="width:100%;text-align:center;font-size:12px;color:var(--text-muted);padding:10px 0">暂无数据</div>';
+  }
+}
+// ====== Records Page ======
+function renderRecords(){
+  renderHeatmap();
+  renderScoreChart();
+  renderHistory();
+  renderWrongWords();
+}
+function renderHeatmap(){
+  const container=document.getElementById('heatmapContainer');
+  const now=new Date();
+  const year=now.getFullYear();
+  const month=now.getMonth();
+  const daysInMonth=new Date(year,month+1,0).getDate();
+  const firstDay=new Date(year,month,1).getDay();
+  const weeks=Math.ceil((daysInMonth+firstDay)/7);
+
+  // Build activity map
+  const activity={};
+  STATE.records.forEach(r=>{
+    const d=new Date(r.date);
+    if(d.getMonth()===month&&d.getFullYear()===year){
+      const key=d.getDate();
+      activity[key]=(activity[key]||0)+r.count;
+    }
+  });
+
+  let html='<div class="heatmap">';
+  let day=1;
+  for(let w=0;w<weeks;w++){
+    html+='<div class="week">';
+    for(let d=0;d<7;d++){
+      if((w===0&&d<firstDay)||day>daysInMonth){
+        html+='<div class="day" style="visibility:hidden"></div>';
+      } else {
+        const count=activity[day]||0;
+        const level=count===0?0:count<=3?1:count<=6?2:count<=10?3:4;
+        const isToday=day===now.getDate();
+        html+=`<div class="day level-${level} ${isToday?'today':''}" title="${month+1}月${day}日: ${count}次练习"></div>`;
+        day++;
+      }
+    }
+    html+='</div>';
+  }
+  html+='</div><div class="heatmap-labels"><span>少</span><span class="day level-1" style="display:inline-block;width:10px;height:10px;vertical-align:middle"></span><span class="day level-2" style="display:inline-block;width:10px;height:10px;vertical-align:middle"></span><span class="day level-3" style="display:inline-block;width:10px;height:10px;vertical-align:middle"></span><span class="day level-4" style="display:inline-block;width:10px;height:10px;vertical-align:middle"></span><span>多</span></div>';
+  container.innerHTML=html;
+}
+
+function renderScoreChart(){
+  const recent=STATE.records.slice(0,14).reverse();
+  const svg=document.getElementById('scoreChart');
+  if(!recent.length){
+    svg.innerHTML='<text x="150" y="60" text-anchor="middle" fill="var(--text-muted)" font-size="12">暂无数据</text>';
+    return;
+  }
+  const w=300,h=120,pad=10;
+  const maxScore=100;
+  const points=recent.map((r,i)=>({x:pad+(w-2*pad)*i/(recent.length-1||1),y:h-pad-(r.score/maxScore)*(h-2*pad)}));
+  const lineD=points.map((p,i)=>(i===0?'M':'L')+p.x.toFixed(1)+','+p.y.toFixed(1)).join('');
+  const areaD=lineD+'L'+points[points.length-1].x.toFixed(1)+','+(h-pad)+'L'+points[0].x.toFixed(1)+','+(h-pad)+'Z';
+  const dots=points.map(p=>`<circle class="dot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}"/>`).join('');
+  svg.innerHTML=`<path class="area-path" d="${areaD}"/><path class="line-path" d="${lineD}"/>${dots}`;
+  document.getElementById('chartStartLabel').textContent=recent.length?new Date(recent[0].date).toLocaleDateString('zh-CN',{month:'short',day:'numeric'}):'';
+  document.getElementById('chartEndLabel').textContent=recent.length?new Date(recent[recent.length-1].date).toLocaleDateString('zh-CN',{month:'short',day:'numeric'}):'';
+}
+
+function renderHistory(){
+  const list=document.getElementById('historyList');
+  const recent=STATE.records.slice(0,30);
+  if(!recent.length){
+    list.innerHTML='<div class="empty-state"><div class="icon">??</div><p>还没有练习记录</p><p style="font-size:12px;margin-top:4px">开始你的第一次练习吧！</p></div>';
+    return;
+  }
+  list.innerHTML=recent.map(r=>{
+    const d=new Date(r.date);
+    const time=d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
+    const date=d.toLocaleDateString('zh-CN',{month:'short',day:'numeric'});
+    const mins=Math.floor((r.duration||0)/60);
+    const secs=(r.duration||0)%60;
+    const icon=r.type==='word'?'??':'??';
+    const cls=r.score<60?'low':'';
+    return `<div class="history-item">
+      <div class="h-icon">${icon}</div>
+      <div class="h-info">
+        <div class="h-title">${r.mode==='cet4'?'四级':'六级'} ${r.type==='word'?'单词':'句子'} · ${r.count}个</div>
+        <div class="h-meta">${date} ${time} · ${mins}分${secs}秒</div>
+      </div>
+      <div class="h-score ${cls}">${r.score}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderWrongWords(){
+  const list=document.getElementById('wrongWordsList');
+  document.getElementById('wrongCountLabel').textContent=`(${STATE.wrongWords.length} 个待强化)`;
+  if(!STATE.wrongWords.length){
+    list.innerHTML='<div class="empty-state"><div class="icon">?</div><p>暂无常错单词，继续保持！</p></div>';
+    return;
+  }
+  // Show wrongbook words if any, otherwise all wrong words
+  const wrongbook=JSON.parse(localStorage.getItem('speaker_wrongbook')||'[]');
+  list.innerHTML=STATE.wrongWords.slice(0,20).map(w=>{
+    const isAdded=wrongbook.includes(w.word);
+    return `<div class="wrong-item">
+      <div class="w-word">${w.word}</div>
+      <div class="w-count">出错 ${w.count} 次</div>
+      <button class="w-btn ${isAdded?'added':''}" onclick="toggleWrongBook('${w.word}')">${isAdded?'? 已加入':'?? 加入'}</button>
+    </div>`;
+  }).join('');
+}
+
+function toggleWrongBook(word){
+  let book=JSON.parse(localStorage.getItem('speaker_wrongbook')||'[]');
+  const idx=book.indexOf(word);
+  if(idx>=0){book.splice(idx,1);showToast('已移出错题本');}
+  else{book.push(word);showToast('已加入错题本 ✅');}
+  localStorage.setItem('speaker_wrongbook',JSON.stringify(book));
+  renderWrongWords();
+  renderRecords();
+}
+
+// ====== Wrong Book Practice ======
+function startWrongBookPractice(){
+  const book=JSON.parse(localStorage.getItem('speaker_wrongbook')||'[]');
+  if(!book.length){showToast('错题本为空，先去练习吧！');return;}
+  const items=book.map(word=>{
+    for(const level of['cet4','cet6']){
+      for(const topic of Object.keys(VOCAB_DB[level])){
+        const found=VOCAB_DB[level][topic].find(w=>w.w===word);
+        if(found)return found;
+      }
+    }
+    return null;
+  }).filter(Boolean);
+  if(!items.length){showToast('未找到对应单词');return;}
+  STATE.items=items;
+  STATE.mode='cet4';
+  STATE.type='word';
+  STATE.index=0;
+  STATE.scores=[];
+  STATE.sessionStart=Date.now();
+  document.getElementById('practiceSetup').style.display='none';
+  document.getElementById('practiceSession').style.display='block';
+  document.getElementById('practiceComplete').style.display='none';
+  updatePracticeUI();
+  document.getElementById('practiceModeTag').textContent='错题本 · 单词';
+  switchPage('practice');
+}
+// ====== Badges & Achievements ======
+const BADGES=[
+  {id:'first',name:'初次尝试',icon:'??',desc:'完成第一次练习',check:()=>STATE.records.length>=1},
+  {id:'beginner',name:'青铜学员',icon:'??',desc:'累计练习10次',check:()=>STATE.records.length>=10},
+  {id:'silver',name:'白银学员',icon:'??',desc:'累计练习50次',check:()=>STATE.records.length>=50},
+  {id:'gold',name:'黄金学员',icon:'??',desc:'累计练习100次',check:()=>STATE.records.length>=100},
+  {id:'diamond',name:'钻石学员',icon:'??',desc:'累计练习200次',check:()=>STATE.records.length>=200},
+  {id:'perfectionist',name:'完美主义者',icon:'??',desc:'单次得分90+',check:()=>STATE.records.some(r=>r.score>=90)},
+  {id:'streak3',name:'三日坚持',icon:'??',desc:'连续3天练习',check:()=>checkStreak(3)},
+  {id:'streak7',name:'一周达人',icon:'??',desc:'连续7天练习',check:()=>checkStreak(7)},
+  {id:'streak30',name:'月度之星',icon:'??',desc:'连续30天练习',check:()=>checkStreak(30)},
+  {id:'wordmaster',name:'单词大师',icon:'??',desc:'练习200个单词',check:()=>STATE.records.filter(r=>r.type==='word').reduce((a,r)=>a+r.count,0)>=200},
+  {id:'sentencemaster',name:'句子达人',icon:'??',desc:'练习100个句子',check:()=>STATE.records.filter(r=>r.type==='sentence').reduce((a,r)=>a+r.count,0)>=100},
+  {id:'cet4master',name:'四级霸主',icon:'??',desc:'完成100个四级练习',check:()=>STATE.records.filter(r=>r.mode==='cet4').length>=100},
+  {id:'cet6master',name:'六级霸主',icon:'??',desc:'完成100个六级练习',check:()=>STATE.records.filter(r=>r.mode==='cet6').length>=100},
+  {id:'speed',name:'快速学习者',icon:'?',desc:'一小时内完成30个练习',check:()=>checkSpeedSession()},
+  {id:'comeback',name:'卷土重来',icon:'??',desc:'改进常错单词10次',check:()=>STATE.wrongWords.some(w=>w.count>=3)}
+];
+
+function checkStreak(n){
+  const days=new Set();
+  STATE.records.forEach(r=>{
+    const d=new Date(r.date);
+    days.add(d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate());
+  });
+  const sorted=[...days].sort().reverse();
+  if(sorted.length<n)return false;
+  // Check consecutive days
+  const today=new Date();
+  today.setHours(0,0,0,0);
+  let streak=0;
+  let checkDate=new Date(today);
+  for(let i=0;i<sorted.length;i++){
+    const d=new Date(sorted[i]);
+    const diff=Math.round((checkDate-d)/86400000);
+    if(diff===0||diff===1){streak++;checkDate=d;}
+    else break;
+  }
+  return streak>=n;
+}
+function checkSpeedSession(){
+  // Check if any session completed 30+ items within 1 hour
+  // Simplified: check if any record shows good density
+  return STATE.records.some(r=>(r.count||0)>=20&&(r.duration||9999)<3600);
+}
+
+function getEarnedBadges(){
+  return BADGES.filter(b=>b.check());
+}
+function getLevel(){
+  const count=STATE.records.length;
+  if(count>=200)return{name:'?? 钻石学员',icon:'??'};
+  if(count>=100)return{name:'?? 黄金学员',icon:'??'};
+  if(count>=50)return{name:'?? 白银学员',icon:'??'};
+  if(count>=10)return{name:'?? 青铜学员',icon:'??'};
+  return{name:'?? 初学者',icon:'??'};
+}
+
+function renderBadges(){
+  const earned=getEarnedBadges();
+  const g=document.getElementById('badgeGrid');
+  g.innerHTML=BADGES.map(b=>{
+    const e=earned.some(eb=>eb.id===b.id);
+    return `<div class="badge-item ${e?'earned':'locked'}" title="${b.desc}">${e?b.icon:'??'}</div>`;
+  }).join('');
+  const level=getLevel();
+  document.getElementById('profileLevel').textContent=level.name;
+}
+function checkBadges(){
+  const before=getEarnedBadges();
+  renderBadges();
+  const after=getEarnedBadges();
+  // Notify about newly earned badges
+  after.forEach(b=>{
+    if(!before.find(bb=>bb.id===b.id)){
+      setTimeout(()=>showToast(`?? 获得新成就：${b.icon} ${b.name}！`),1000);
+    }
+  });
+}
+function updateProfileStats(){
+  document.getElementById('totalPracticeCount').textContent=STATE.records.length;
+}
+
+// ====== Toast ======
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._hide);
+  t._hide=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ====== Modal ======
+function showModal(title,body,onConfirm,onCancel){
+  document.getElementById('modalTitle').textContent=title||'提示';
+  document.getElementById('modalBody').textContent=body||'';
+  document.getElementById('modalOverlay').classList.add('show');
+  const confirmBtn=document.getElementById('modalConfirm');
+  const cancelBtn=document.getElementById('modalCancel');
+  const newConfirm=confirmBtn.cloneNode(true);
+  const newCancel=cancelBtn.cloneNode(true);
+  confirmBtn.parentNode.replaceChild(newConfirm,confirmBtn);
+  cancelBtn.parentNode.replaceChild(newCancel,cancelBtn);
+  newConfirm.addEventListener('click',()=>{
+    document.getElementById('modalOverlay').classList.remove('show');
+    if(onConfirm)onConfirm();
+  });
+  newCancel.addEventListener('click',()=>{
+    document.getElementById('modalOverlay').classList.remove('show');
+    if(onCancel)onCancel();
+  });
+  document.getElementById('modalOverlay').addEventListener('click',(e)=>{
+    if(e.target===document.getElementById('modalOverlay')){
+      document.getElementById('modalOverlay').classList.remove('show');
+      if(onCancel)onCancel();
+    }
+  });
+}
+
+// ====== Confetti ======
+function showConfetti(){
+  const c=document.getElementById('confettiContainer');
+  const colors=['#2d9b7a','#f5a623','#e85d5d','#4caf7d','#5b7dff','#ff6b9d','#ffd93d','#6bcbff'];
+  c.innerHTML='';
+  for(let i=0;i<40;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'%';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration=(2+Math.random()*2)+'s';
+    el.style.animationDelay=Math.random()*0.8+'s';
+    el.style.width=(5+Math.random()*8)+'px';
+    el.style.height=(5+Math.random()*8)+'px';
+    el.style.borderRadius=Math.random()>0.5?'50%':'2px';
+    c.appendChild(el);
+  }
+  setTimeout(()=>c.innerHTML='',4000);
+}
+
+// ====== Data Export/Import ======
+function exportData(){
+  const data={
+    records:STATE.records,
+    wrongWords:STATE.wrongWords,
+    wrongbook:JSON.parse(localStorage.getItem('speaker_wrongbook')||'[]'),
+    settings:{
+      accent:STATE.accent,
+      dailyWordGoal:STATE.dailyWordGoal,
+      dailySentenceGoal:STATE.dailySentenceGoal,
+      darkMode:STATE.darkMode,
+      eyeCare:STATE.eyeCare
+    },
+    exportDate:new Date().toISOString()
+  };
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`speaker_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('&#x1f4e4; 数据已导出');
+}
+function importData(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(data.records){STATE.records=data.records;localStorage.setItem('speaker_records',JSON.stringify(data.records));}
+      if(data.wrongWords){STATE.wrongWords=data.wrongWords;localStorage.setItem('speaker_wrong',JSON.stringify(data.wrongWords));}
+      if(data.wrongbook){localStorage.setItem('speaker_wrongbook',JSON.stringify(data.wrongbook));}
+      if(data.settings){
+        if(data.settings.accent){STATE.accent=data.settings.accent;localStorage.setItem('speaker_accent',data.settings.accent);}
+        if(data.settings.dailyWordGoal){STATE.dailyWordGoal=data.settings.dailyWordGoal;localStorage.setItem('speaker_dailyWord',data.settings.dailyWordGoal);}
+        if(data.settings.dailySentenceGoal){STATE.dailySentenceGoal=data.settings.dailySentenceGoal;localStorage.setItem('speaker_dailySentence',data.settings.dailySentenceGoal);}
+      }
+      showToast('&#x1f4e5; 数据已恢复');
+      renderHome();
+      renderRecords();
+      renderBadges();
+    }catch(err){showToast('❌ 数据格式错误');}
+  };
+  reader.readAsText(file);
+  event.target.value='';
+}
+function clearAllData(){
+  showModal('?? 确认清除','此操作将清除所有练习记录、错题本数据和学习设置。此操作不可恢复！',()=>{
+    STATE.records=[];STATE.wrongWords=[];
+    localStorage.removeItem('speaker_records');
+    localStorage.removeItem('speaker_wrong');
+    localStorage.removeItem('speaker_wrongbook');
+    renderHome();renderRecords();renderBadges();
+    showToast('&#x1f5d1;&#xFE0F; 所有数据已清除');
+  });
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
